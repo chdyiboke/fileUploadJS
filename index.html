@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/font-icons.css">
+		<link rel="stylesheet" href="css/iuapmobile.um.css">
+		<script src="js/summer.js" ></script>
+		<script src="js/jquery.min.js" ></script>
+		<script src="js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="js/index.js" ></script>
+	</head>
+	<body>
+		<div id="win" class="um-win" >
+			<div id="header" class="um-header">
+				<a href="#" class="um-back">返回</a>
+				<h3>iuap mobile</h3>
+				<a href="#" class="um-header-right ti-plus f20"></a>
+			</div>
+			<div id="content" class="um-content p15">
+				<button class="btn" onclick="testFile()">
+					多（文件）上传
+				</button>
+				<div style="padding-top: 30px;">
+					<button class="btn" onclick="oneFile()">
+						单（文件）上传
+					</button>
+				</div>
+				<div style="padding-top: 30px;">
+					<button class="btn" onclick="uploadImg()">
+						多（图片）上传
+					</button>
+				</div>
+				<div style="padding-top: 30px;">
+					<button class="btn" onclick="oneImg()">
+						单（图片）上传
+					</button>
+				</div>
+				<div style="padding-top: 30px;">
+					<button class="btn" onclick="openWinFeedback()">
+						意见反馈（多图）
+					</button>
+				</div>
+				<div style="padding-top: 30px;">
+					<button class="btn" onclick="createNewDynamic()">
+						圈子（多图）
+					</button>
+				</div>
+			</div>
+
+			<div id="footer" class="um-footer">
+				<div class="um-footerbar">
+					<a id="item0" href="#" class="um-footerbar-item"> <i class="ti-comments f20"></i>
+					<div class="f12 lh1">
+						消息
+					</div> </a>
+					<a id="item1" href="#" class="um-footerbar-item"> <i class="ti-notepad f20"></i>
+					<div class="f12 lh1">
+						日程
+					</div> </a>
+					<a id="item2" href="#" class="um-footerbar-item active"> <i class="ti-agenda f20"></i>
+					<div class="f12 lh1">
+						通讯录
+					</div> </a>
+					<a id="item3" href="#" class="um-footerbar-item"> <i class="ti-user f20"></i>
+					<div class="f12 lh1">
+						我
+					</div> </a>
+				</div>
+			</div>
+		</div>
+		<script>
+			summerready = function() {
+			};
+			function testFile() {
+				summer.download({
+					"url" : "https://file-cdn.yonyoucloud.com/iuapmobile/emm/excel/test/ncuser.xls",
+					"locate" : "download/file",
+					"filename" : "demo.xls", //不为空  但是为空的话可以上传成功
+					"override" : "true",
+					"callback" : "downloadCallBack()"
+				})
+
+			}
+
+			function downloadCallBack(args) {
+				if (args.isfinish) {
+					//alert("下载成功"); //多次回调，用于进度条提示
+					//alert(JSON.stringify(args));
+					uploadFile(args.savePath);
+				}
+			}
+
+			function uploadFile(path) {
+				var paramObj = {
+					imageType : 1
+				};
+
+				var headers = {
+					"DEVELOP-KEY" : "95b65502021a4db8bb8b648c0e16f153",
+				};
+
+				summer.showProgress();
+
+				summer.multiUpload({
+					fileArray : [{
+						fileURL : path,
+						//type : "image/jpeg",
+						name : "imgs1"
+					}], //需要上传的文件路径
+					headers : headers,
+					//timeout : 100, //超时时间，单位秒
+					params : paramObj, //上传参数
+					SERVER : "http://10.6.236.6:8080/fileUpload/servlet/UploadHandleServlet" //服务器地址
+				}, function(ret) {
+					summer.toast({
+						"msg" : "文件上传成功"
+					})
+					summer.hideProgress();
+				}, function(err) {
+					summer.hideProgress();
+					summer.toast({
+						"msg" : "文件上传失败"
+					})
+				});
+			}
+
+			//引入插件
+			function oneFile() {
+				summer.showProgress();
+				summer.download({
+					"url" : "https://file-cdn.yonyoucloud.com/iuapmobile/emm/excel/test/ncuser.xls",
+					"locate" : "download/file",
+					"filename" : "dem.xls", //不为空  但是为空的话可以上传成功
+					"override" : "true",
+					"callback" : "oneDownloadCall()"
+				})
+
+			}
+
+			function oneDownloadCall(args) {
+				if (args.isfinish) {
+					//alert(JSON.stringify(args));
+					oneUpload(args.savePath);
+					summer.hideProgress();
+				}
+			}
+
+			function oneUpload(path) {
+				var paramObj = {
+					imageType : 1
+				};
+				summer.showProgress();
+
+				summer.upload({
+					fileURL : path,
+					//type : "image/jpeg",
+					params : paramObj,
+					SERVER : "http://10.6.236.6:8080/fileUpload/servlet/UploadHandleServlet" //服务器地址
+
+				}, function(ret) {
+					summer.toast({
+						"msg" : "文件上传成功a"
+					})
+					summer.hideProgress();
+				}, function(err) {
+					summer.hideProgress();
+					summer.toast({
+						"msg" : "文件上传失败a"
+					})
+				});
+			}
+		</script>
+	</body>
+</html>

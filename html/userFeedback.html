@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/iuapmobile.um.css">
+    <link rel="stylesheet" href="../css/fonts/iconfont.css">
+    <link rel="stylesheet" href="../css/userFeedback.css"/>   
+    <script src="../js/summer.js" ></script>
+	<script src="../js/jquery.min.js" ></script>
+	<script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	<script src="../js/moli.common.js"></script>
+	<script src="../js/userFeedback.js"></script>
+</head>
+<body>
+<div class="um-win">
+    <div class="um-content">
+        <div class="box border">
+            <textarea id="question" placeholder="请输入需要你要说的话~" maxlength="200"></textarea>
+            <p class="showBox"><span id="txtShow">0/200</span></p>
+        </div>
+        <div class="box clearfix border">
+            <div class="title-box">
+                <span class="title">上传图片 </span>
+                <span id="picShow" class="picShow">0/4</span>
+            </div>
+
+            <div id="uploadForm">
+                <div id="ibox">
+
+                    <div class="con" id="plus" onClick="showActionsheet();">
+                        <div class="con-con">
+                            <div class="font"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <button class="btn" onclick="uploadQuestion()">提交</button>
+    </div>
+</div>
+</body>
+</html>

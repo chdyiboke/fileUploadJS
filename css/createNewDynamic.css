@@ -1,0 +1,310 @@
+/* .btn {
+border:none;
+}
+.um-back:before{border-width:0}.um-win .um-header,.um-win .um-header-box{background-color:#fff}.um-win .um-back{color:#333}.um-header-right{color:#333;right:22px}.dynamic-text{word-break:break-all;display:block;width:100%;min-height:4.2rem;overflow-y:scroll;line-height:.4rem;resize:none;box-sizing:border-box;-webkit-box-sizing:border-box;text-align:justify;border:none;outline:none;padding:.3rem;overflow:hidden;font-size:.26rem;color:#333}.um-content{background-color:#f6f6f6}.textarea-box{position:relative;padding:20px 0}.text-limit{line-height: 0.34rem;height:.36rem;padding:.02rem .1rem 0 .1rem;position:absolute;right:.2rem;bottom:-.1rem;color:#ddd;font-size:.24rem;background:#999;border-radius:.1rem;} */
+
+body {
+    font-size: 0.3rem;
+    background: #fafafa;
+    height: 100%;
+    color: #2e2e2e;
+    font-family: "微软雅黑";
+}
+
+#wrap {
+    overflow: hidden;
+}
+
+.dynamic-main {
+    padding: 0.34rem 0.32rem 0.4rem;
+    background-color: #fff;
+}
+
+#wrap div.box {
+    background: #fff;
+    margin-bottom: 0.2rem;
+}
+
+#wrap div.box p.title {
+    height: 0.5rem;
+    line-height: 0.5rem;
+    color: #808080;
+    margin-bottom: 0.24rem;
+}
+
+#wrap p.showBox {
+    height: 0.4rem;
+    width: 100%;
+    position: relative;
+}
+
+#wrap p.showBox span {
+    display: inline-block;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    border-radius: 0.5rem;
+    padding: 0 0.2rem;
+    background: #bdbdbd;
+    color: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#advice {
+    word-break: break-all;
+    display: block;
+    width: 100%;
+    height: 1.62rem;
+    line-height: 0.4rem;
+    resize: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    text-align: justify;
+    border: none;
+    font-size: 14px;
+    color: #333333;
+    outline: none;
+}
+
+#advice::-webkit-input-placeholder {
+    text-indent: 1.1em;
+    color: #fff;
+}
+
+#advice:hover {
+    border: none;
+    outline: none;
+}
+
+#wrap div.box .picItem {
+    float: left;
+    width: 1.26rem;
+    height: 1.26rem;
+    margin: 0.2rem 0rem 0.13rem 0.2rem;
+}
+
+div.picItem {
+    background-size: 100% 100%;
+    background: url('../image/addImg.png') no-repeat 0 0;
+}
+
+#wrap .btnBox {
+    width: 100%;
+}
+
+#wrap .btnBox #submit {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #1baede;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+}
+
+#ibox .con {
+    float: left;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.1rem;
+    overflow: hidden;
+}
+
+#ibox .conBox {
+    position: relative;
+    width: 22%;
+    height: 1.5rem;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    float: left;
+}
+
+#ibox .con:nth-child(4n) {
+    margin-right: 0;
+}
+
+#ibox .font {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #d3d3d3;
+    border-radius: 0.1rem;
+    background: url('../img/s-j.png') no-repeat center center;
+    background-size: 0.46rem 0.46rem;
+}
+
+#ibox img {
+    display: block;
+}
+
+#ibox .close {
+    position: absolute;
+    top: -0.2rem;
+    right: -0.15rem;
+    width: 0.3rem;
+    height: 0.3rem;
+    z-index: 999;
+    font-size: 0.3rem;
+    color: #ddd;
+}
+
+#wrap .box.inputBox {
+    height: 0.5rem;
+    position: relative;
+}
+
+#wrap .box input[type='text'] {
+    width: 95%;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    font-size: 0.3rem;
+    border: none;
+    outline: none;
+    position: absolute;
+    left: 0.2rem;
+    top: 0.2rem;
+}
+
+/********************************拍照功能开始***********************/
+
+#fileDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 48;
+}
+
+/*#actionsheet{
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   height: 2.8rem;
+   background-color: #f9f9f9;
+}
+ #actionsheet .um-list.um-list-corner{
+    border-radius: 0;
+    width: 100%;
+ }
+ #actionsheet .um-list.um-list-corner li div{
+    border-image: none;
+    -webkit-border-image:none;
+    height: 0.88rem;
+    padding: 0;
+    line-height: 0.88rem;
+    font-size: 0.28rem;
+    color: #333;
+ }
+ #actionsheet .um-list.um-list-corner li .action-item{
+    border-bottom: 1px solid #f4f4f4;
+ }
+ #actionsheet .um-list.um-list-corner li .action-cancle{
+    border-top: 1px solid #f4f4f4;
+ }
+ #actionsheet .um-list.um-list-corner:nth-of-type(1){
+    position: absolute;
+    left: 0;
+    top: 0;
+ }
+ #actionsheet .um-list.um-list-corner:nth-of-type(2){
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+ }*/
+
+#zhezhao {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0;
+    z-index: 49;
+}
+
+.none {
+    display: none;
+}
+
+.totalBox {
+    /*总高度3.2rem*/
+    position: absolute;
+    bottom: -3.2rem;
+    left: 0.3rem;
+    right: 0.3rem;
+    z-index: 50;
+}
+
+.totalBox ul {
+    margin-bottom: 0.28rem;
+    border-radius: 0.15rem;
+    background: #fff;
+    overflow: hidden;
+}
+
+.totalBox li {
+    line-height: 0.9rem;
+}
+
+.totalBox ul .bor {
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.totalBox .btn {
+    color: #343434;
+    text-align: center;
+    font-size: 0.36rem;
+    border: none;
+}
+
+#scopeBox {
+    margin-top: 0.2rem;
+    background-color: #fff;
+}
+
+#scopeBox .list {
+    height: 0.88rem;
+    /*background: url(../image/right.png) no-repeat 97% center;
+    background-size: 0.17rem 0.3rem;*/
+    line-height: 0.88rem;
+}
+
+#scopeBox .list .txt {
+    font-size: 0.28rem;
+    color: #333333;
+    padding-left: 0.34rem;
+}
+
+#scopeBox .list .fr {
+    position: relative;
+    float: right;
+    margin-right: 0.5rem;
+}
+
+#scopeBox .list .fr .iconfont.icon-enter {
+    position: absolute;
+    height: 0.28rem;
+    font-size: 0.28rem;
+    right: -0.4rem;
+    top: 0.04rem;
+    color: #DBDBDB;
+}
+
+#scopeBox .list .fr input {
+    display: block;
+    width: 3.6rem;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    border: none;
+    outline: none;
+    text-align: right;
+    background: #fff;
+    position: static;
+    font-size: 0.3rem;
+    color: #999999;
+}
